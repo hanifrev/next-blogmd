@@ -1,17 +1,27 @@
+/* eslint-disable react/no-children-prop */
 /* eslint-disable react/jsx-key */
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import Head from 'next/head'
 import Post from '../components/Post'
+// import TextLoop from "react-text-loop";
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
 export default function Home({posts}) {
+  // const city = ["Kediri, Indonesia", "Taipe, Taiwan", "Madrid, Spain", "Abuja, Nigeria", "Barrow, UK", "New York City, USA"]
   console.log(posts)
   return (
     <div>
       <Head>
         <title>test test</title>
       </Head>
+    {/* 
+      <div className="textloop">
+        Made with{" "}<FontAwesomeIcon icon={faHeart} color="red" />{" "}
+        <TextLoop children={city} interval={2600} fade="true" />
+      </div> */}
 
       <div className='posts'>
         {posts.map((post, index) => (
@@ -26,6 +36,7 @@ export default function Home({posts}) {
 export async function getStaticProps() {
   // get files from post directory
   const files = fs.readdirSync(path.join('posts'))
+  // console.log(files)
 
   // get slug and frontmatter from post
   const posts = files.map(filename =>{
